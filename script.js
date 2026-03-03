@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
     const mobileLinks = document.querySelectorAll('.mobile-link');
     const icon = mobileMenuBtn.querySelector('i');
-    
+
     function toggleMenu() {
         mobileNavOverlay.classList.toggle('active');
         if (mobileNavOverlay.classList.contains('active')) {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', toggleMenu);
     }
-    
+
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (mobileNavOverlay.classList.contains('active')) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sticky Header
     const header = document.querySelector('.header');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Scroll Animations (Intersection Observer)
     const fadeElements = document.querySelectorAll('.service-card, .trust-item, .about-content, .about-image-wrapper, .contact-info, .map-card');
-    
+
     // Set initial state for elements to fade in
     fadeElements.forEach(el => {
         el.style.opacity = '0';
@@ -65,4 +65,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     fadeElements.forEach(el => observer.observe(el));
+
+    // WhatsApp Form Submission
+    const waForm = document.getElementById('whatsapp-form');
+    if (waForm) {
+        waForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('wa-name').value;
+            const phone = document.getElementById('wa-phone').value;
+            const service = document.getElementById('wa-service').value;
+
+            // Clinic's phone number
+            const waNumber = '918130767068';
+
+            // Constructing the message
+            const message = `Hello Dental Tree! I would like to request a callback.\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Service Required:* ${service}`;
+
+            // Open WhatsApp in a new tab
+            const whatsappUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+
+            waForm.reset();
+        });
+    }
 });
