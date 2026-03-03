@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const service = document.getElementById('wa-service').value;
 
             // Clinic's phone number
-            const waNumber = '918130767068';
+            const waNumber = '8130767068';
 
             // Constructing the message
             const message = `Hello Dental Tree! I would like to request a callback.\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Service Required:* ${service}`;
