@@ -82,11 +82,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // Constructing the message
             const message = `Hello Dental Tree! I would like to request a callback.\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Service Required:* ${service}`;
 
-            // Open WhatsApp in a new tab
+            // Open WhatsApp
             const whatsappUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
 
-            waForm.reset();
+            // Try to open in same window to avoid popup blockers
+            window.location.href = whatsappUrl;
+
+            // Reset form
+            setTimeout(() => {
+                waForm.reset();
+            }, 100);
         });
     }
 });
